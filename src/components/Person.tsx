@@ -1,20 +1,17 @@
-type PersonProps = {
-    name:{
-        firstName:string;
-        lastName:string;
-    } 
-    nameRole:{
-        firstName:string;
-        lastName:string;
-    }[]
-}
+'use client'
 
-export const Person = (props:PersonProps) => {
+import { Name, NameRole, PersonProps } from "../lib/index.types"
+
+type PersonListProps = {
+    name:Name;
+    nameRole:NameRole[];
+}
+export const Person = ({name,nameRole}:PersonListProps) => {
    return(
     <div>
-        {props.name.firstName}
-        {props.name.lastName}
-        {props.nameRole.map((items) => (
+        {name.firstName}
+        {name.lastName}
+        {nameRole.map((items) => (
             <div>
                 {items.firstName}
                 {items.lastName}

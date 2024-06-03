@@ -5,9 +5,8 @@ interface GreetProps {
     isLoggedIn:boolean;
 }
 export const Greet = ( props:GreetProps ) => {
-
   return (
-    <div >
+    <div>
         <h1 style={{color:'blue',textAlign:'center'}}>
         {props.isLoggedIn?`welcome ${props.name} You Have ${props.messageCount} messsages`:"welcome Guest"}
         </h1>
