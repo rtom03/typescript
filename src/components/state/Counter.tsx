@@ -2,21 +2,28 @@ import { useReducer } from "react"
 
 const initialState = { count:0 }
 type StateProps ={
-    state:string;
+    count:number;
 }
 type ActionProps = {
-    action:string;
-    type:string;
+    type:'increment' | 'decrement';
+    payload:number;
 }
- 
-function reducer(state:StateProps, action:ActionProps) {
+
+type ResetProps = {
+  type: 'reset'
+}
+
+function reducer(state:StateProps, action:ActionProps | ResetProps) {
     switch (action.type) {
         case 'increment':
           return { count:state.count + action.payload }
           case 'decrement':
             return { count:state.count - action.payload }
-          default:
-            return state  
+            case 'reset' :
+            return initialState;
+            
+            default:
+               return state
     }
 }
 
@@ -28,8 +35,9 @@ const [state, dispatch] = useReducer(reducer, initialState)
           Count: {state.count}
           <button onClick={()=> dispatch({ type:'increment',payload:10})}>
             Increment 10</button>
-          <button onClick={()=> dispatch({ type:'increment',payload:10})}>
-            Increment 10</button>
+          <button onClick={()=> dispatch({ type:'decrement',payload:10})}>
+            decrement 10</button>
+          <button onClick={() =>dispatch({type:'reset'})}>reset</button>  
         </>
     )
 }
